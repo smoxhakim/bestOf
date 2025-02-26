@@ -32,28 +32,16 @@ const values = [
 
 const teamMembers = [
   {
-    name: 'Sarah Johnson',
+    name: 'Samuel Lee',
     role: 'CEO & Founder',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
+    image: 'https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bW9yY2FuJTIwbWFufGVufDB8fDB8fHww',
     bio: '15+ years of experience in technology leadership and business development',
   },
   {
     name: 'Michael Chen',
     role: 'CTO',
-    image: 'https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bW9yY2FuJTIwbWFufGVufDB8fDB8fHww',
     bio: 'Expert in software architecture and emerging technologies',
-  },
-  {
-    name: 'Emily Rodriguez',
-    role: 'Head of Product',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1961&q=80',
-    bio: 'Passionate about creating intuitive and impactful product experiences',
-  },
-  {
-    name: 'David Wilson',
-    role: 'Sales Director',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-    bio: 'Building strong client relationships and driving business growth',
   },
 ]
 
@@ -164,12 +152,12 @@ export default function AboutPage() {
             </div>
             <h2 className="text-3xl font-bold mb-4">Our Leadership Team</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Meet the experts behind TechSolutions who are passionate about 
+              Meet the experts behind BestOf who are passionate about 
               delivering excellence in technology
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
@@ -208,9 +196,6 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" asChild>
               <a href="/contact">Contact Us</a>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="/careers">View Careers</a>
             </Button>
           </div>
         </motion.div>

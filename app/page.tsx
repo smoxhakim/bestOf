@@ -38,13 +38,13 @@ export default function Home() {
               Premium computer equipment and professional development services to drive your business forward.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" asChild>
+              <Button className='hover:bg-white/90 text-white hover:text-primary-foreground' size="lg" asChild>
                 <Link href="/products">
                   <ShoppingCart className="mr-2 h-5 w-5" />
                   Browse Products
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button className='bg-white text-primary-foreground hover:bg-primary/90' size="lg" variant="outline" asChild>
                 <Link href="/services">
                   <Code className="mr-2 h-5 w-5" />
                   Explore Services

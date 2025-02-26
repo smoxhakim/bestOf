@@ -12,20 +12,12 @@ import { MapPin, Phone, Mail, Clock, MessageSquare, Building, ArrowRight } from 
 
 const offices = [
   {
-    city: 'New York',
+    city: 'CasaBlanca',
     address: '123 Tech Avenue, NY 10001',
     phone: '+1 (555) 123-4567',
     email: 'nyc@techsolutions.com',
     hours: 'Mon-Fri: 9:00 AM - 6:00 PM',
-    image: 'https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80',
-  },
-  {
-    city: 'London',
-    address: '456 Innovation Street, London EC2A 1AB',
-    phone: '+44 20 7123 4567',
-    email: 'london@techsolutions.com',
-    hours: 'Mon-Fri: 9:00 AM - 6:00 PM',
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    image: 'https://images.unsplash.com/photo-1579017461826-8ea20d5cdb28?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FzYWJsYW5jYXxlbnwwfHwwfHx8MA%3D%3D',
   },
 ]
 
@@ -230,7 +222,7 @@ export default function ContactPage() {
                     key={index}
                     variants={item}
                     whileHover={{ y: -5 }}
-                    className="bg-card rounded-lg shadow-sm overflow-hidden"
+                    className="bg-primary/10 rounded-lg shadow-sm overflow-hidden"
                   >
                     <div className="relative h-48">
                       <img

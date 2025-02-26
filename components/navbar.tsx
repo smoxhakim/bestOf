@@ -24,7 +24,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <Monitor className="h-8 w-8" />
-              <span className="font-bold text-xl">TechSolutions</span>
+              <span className="font-bold text-xl">BestOf</span>
             </Link>
           </div>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            <Button>Get Started</Button>
+            {/* <Button>Get Started</Button> */}
           </div>
 
           {/* Mobile Menu Button */}
