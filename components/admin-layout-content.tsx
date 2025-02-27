@@ -48,7 +48,7 @@ export default function AdminLayoutContent({ children }: { children: React.React
   }
 
   return (
-    <div className="flex h-screen bg-background pt-16">
+    <div className="flex h-screen bg-background">
       {/* Sidebar */}
       <aside
         className={cn(

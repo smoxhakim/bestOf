@@ -6,9 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.6.0",
     "@hookform/resolvers": "^3.10.0",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@next/swc-wasm-nodejs": "13.5.1",
@@ -56,6 +57,7 @@
     "input-otp": "^1.2.4",
     "inquirer": "^12.4.2",
     "lucide-react": "^0.446.0",
+    "negotiator": "^1.0.0",
     "next": "13.5.1",
     "next-auth": "^4.24.11",
     "next-intl": "^3.26.5",
@@ -80,6 +82,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/inquirer": "^9.0.7",
+    "@types/negotiator": "^0.6.3",
     "prisma": "^6.4.1"
   }
 }

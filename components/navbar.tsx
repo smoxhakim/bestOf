@@ -1,21 +1,50 @@
-// components/navbar.tsx
 "use client"
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Monitor, ShoppingCart, Code, Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import type React from "react"
 
-const Navbar = () => {
+import { useState } from "react"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { Monitor, ShoppingCart, Code, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import LanguageSwitcher from "@/components/language-switcher"
+
+interface NavbarProps {
+  translations?: {
+    products?: string
+    services?: string
+    about?: string
+    contact?: string
+    getStarted?: string
+  }
+  isLoading?: boolean
+}
+
+const defaultTranslations = {
+  products: "Products",
+  services: "Services",
+  about: "About",
+  contact: "Contact",
+  getStarted: "Get Started",
+}
+
+const Navbar: React.FC<NavbarProps> = ({ translations = {}, isLoading = false }) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const t = { ...defaultTranslations, ...translations }
+
   const menuItems = [
-    { href: '/products', label: 'Products', icon: ShoppingCart },
-    { href: '/services', label: 'Services', icon: Code },
-    { href: '/about', label: 'About', icon: Monitor },
-    { href: '/contact', label: 'Contact' },
+    { href: "/products", label: t.products, icon: ShoppingCart },
+    { href: "/services", label: t.services, icon: Code },
+    { href: "/about", label: t.about, icon: Monitor },
+    { href: "/contact", label: t.contact },
   ]
+
+  if (isLoading) {
+    return (
+      <nav className="fixed w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b h-16" />
+    )
+  }
 
   return (
     <nav className="fixed w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b">
@@ -39,7 +68,8 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            {/* <Button>Get Started</Button> */}
+            {/* Using the dedicated language switcher component */}
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,7 +103,11 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            <Button className="w-full mt-4">Get Started</Button>
+            <div className="flex justify-between items-center px-3 py-2">
+              <span className="text-base font-medium text-foreground">Language</span>
+              <LanguageSwitcher />
+            </div>
+            <Button className="w-full mt-4">{t.getStarted}</Button>
           </div>
         </motion.div>
       )}

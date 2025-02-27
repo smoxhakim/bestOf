@@ -1,0 +1,167 @@
+{
+    "common": {
+      "navigation": {
+        "home": "Home",
+        "products": "Products",
+        "services": "Services",
+        "about": "About",
+        "contact": "Contact",
+        "getStarted": "Get Started"
+      },
+      "footer": {
+        "products": "Products",
+        "services": "Services",
+        "company": "Company",
+        "computers": "Computers",
+        "laptops": "Laptops",
+        "accessories": "Accessories",
+        "networking": "Networking",
+        "webDevelopment": "Web Development",
+        "appDevelopment": "App Development",
+        "itConsulting": "IT Consulting",
+        "technicalSupport": "Technical Support",
+        "aboutUs": "About Us",
+        "contact": "Contact",
+        "blog": "Blog",
+        "careers": "Careers",
+        "copyright": "© 2024 TechSolutions. All rights reserved.",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service"
+      },
+      "languageSwitcher": {
+        "en": "English",
+        "fr": "French"
+      }
+    },
+    "home": {
+      "hero": {
+        "title": "Transform Your Business with Technology Solutions",
+        "description": "Premium computer equipment and professional development services to drive your business forward.",
+        "browseProducts": "Browse Products",
+        "exploreServices": "Explore Services"
+      },
+      "features": {
+        "premiumEquipment": {
+          "title": "Premium Equipment",
+          "description": "High-quality computers and accessories for your business needs."
+        },
+        "developmentServices": {
+          "title": "Development Services",
+          "description": "Custom web and app development solutions tailored to your requirements."
+        },
+        "itConsulting": {
+          "title": "IT Consulting",
+          "description": "Expert guidance to help you make informed technology decisions."
+        },
+        "learnMore": "Learn More"
+      }
+    },
+    "products": {
+      "title": "Premium IT Equipment",
+      "description": "Discover our range of high-quality computer equipment for your business needs",
+      "search": "Search products...",
+      "category": "Category",
+      "sortBy": "Sort by",
+      "name": "Name",
+      "price": "Price",
+      "loading": "Loading products..."
+    },
+    "about": {
+      "title": "About TechSolutions",
+      "description": "Empowering businesses through innovative technology solutions since 2015",
+      "mission": {
+        "title": "Our Mission",
+        "description": "To empower businesses with cutting-edge technology solutions that drive growth, efficiency, and innovation. We're committed to delivering exceptional value through our premium IT equipment and expert development services.",
+        "partnerWithUs": "Partner with Us"
+      },
+      "values": {
+        "title": "Our Values",
+        "innovation": {
+          "title": "Innovation",
+          "description": "Constantly pushing boundaries to deliver cutting-edge solutions"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Committed to delivering the highest quality in everything we do"
+        },
+        "customerFocus": {
+          "title": "Customer Focus",
+          "description": "Your success is our priority - we're dedicated to exceeding expectations"
+        },
+        "integrity": {
+          "title": "Integrity",
+          "description": "Building trust through transparency and ethical business practices"
+        }
+      },
+      "team": {
+        "title": "Our Leadership Team",
+        "description": "Meet the experts behind BestOf who are passionate about delivering excellence in technology"
+      },
+      "cta": {
+        "title": "Join Our Journey",
+        "description": "Be part of our mission to transform businesses through technology",
+        "contactUs": "Contact Us"
+      }
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "description": "Have a question or project in mind? We'd love to hear from you.",
+      "form": {
+        "title": "Send us a Message",
+        "description": "Fill out the form below and we'll get back to you as soon as possible.",
+        "name": "Name",
+        "email": "Email",
+        "company": "Company",
+        "message": "Message",
+        "sending": "Sending...",
+        "send": "Send Message",
+        "success": "Thank you for your message. We will get back to you soon!"
+      },
+      "quickContact": {
+        "title": "Quick Contact",
+        "phone": "Phone",
+        "email": "Email",
+        "businessHours": "Business Hours"
+      },
+      "offices": {
+        "title": "Our Offices"
+      }
+    },
+    "services": {
+      "title": "Development & Consulting Services",
+      "description": "Transform your business with our comprehensive technology solutions",
+      "web": {
+        "title": "Web Development",
+        "description": "Custom web applications built with modern technologies",
+        "features": ["Responsive Design", "Progressive Web Apps", "E-commerce Solutions", "Content Management Systems"]
+      },
+      "mobile": {
+        "title": "Mobile Development",
+        "description": "Native and cross-platform mobile applications",
+        "features": ["iOS Development", "Android Development", "Cross-platform Solutions", "Mobile UI/UX Design"]
+      },
+      "consulting": {
+        "title": "IT Consulting",
+        "description": "Strategic technology consulting and digital transformation",
+        "features": ["Technology Assessment", "Digital Strategy", "Process Optimization", "Security Consulting"]
+      },
+      "caseStudies": {
+        "title": "Case Studies",
+        "keyResults": "Key Results"
+      },
+      "cta": {
+        "title": "Ready to Transform Your Business?",
+        "description": "Let's discuss how our technology solutions can help you achieve your business goals",
+        "getStarted": "Get Started"
+      },
+      "Navbar": {
+        "home": "Home",
+        "products": "Products",
+        "about": "About",
+        "contact": "Contact",
+        "getStarted": "Get Started"
+      }
+    }
+  }
+  
+  

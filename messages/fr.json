@@ -1,0 +1,178 @@
+{
+    "common": {
+      "navigation": {
+        "home": "Accueil",
+        "products": "Produits",
+        "services": "Services",
+        "about": "À propos",
+        "contact": "Contact",
+        "getStarted": "Commencer"
+      },
+      "footer": {
+        "products": "Produits",
+        "services": "Services",
+        "company": "Entreprise",
+        "computers": "Ordinateurs",
+        "laptops": "Portables",
+        "accessories": "Accessoires",
+        "networking": "Réseautage",
+        "webDevelopment": "Développement Web",
+        "appDevelopment": "Développement d'Applications",
+        "itConsulting": "Conseil Informatique",
+        "technicalSupport": "Support Technique",
+        "aboutUs": "À propos de nous",
+        "contact": "Contact",
+        "blog": "Blog",
+        "careers": "Carrières",
+        "copyright": "© 2024 TechSolutions. Tous droits réservés.",
+        "privacyPolicy": "Politique de Confidentialité",
+        "termsOfService": "Conditions d'Utilisation"
+      },
+      "languageSwitcher": {
+        "en": "Anglais",
+        "fr": "Français"
+      }
+    },
+    "home": {
+      "hero": {
+        "title": "Transformez votre entreprise avec des solutions technologiques",
+        "description": "Équipement informatique haut de gamme et services de développement professionnels pour faire avancer votre entreprise.",
+        "browseProducts": "Parcourir les produits",
+        "exploreServices": "Explorer les services"
+      },
+      "features": {
+        "premiumEquipment": {
+          "title": "Équipement Premium",
+          "description": "Ordinateurs et accessoires de haute qualité pour les besoins de votre entreprise."
+        },
+        "developmentServices": {
+          "title": "Services de Développement",
+          "description": "Solutions de développement web et d'applications personnalisées adaptées à vos besoins."
+        },
+        "itConsulting": {
+          "title": "Conseil Informatique",
+          "description": "Conseils d'experts pour vous aider à prendre des décisions technologiques éclairées."
+        },
+        "learnMore": "En savoir plus"
+      }
+    },
+    "products": {
+      "title": "Équipement informatique premium",
+      "description": "Découvrez notre gamme d'équipements informatiques de haute qualité pour les besoins de votre entreprise",
+      "search": "Rechercher des produits...",
+      "category": "Catégorie",
+      "sortBy": "Trier par",
+      "name": "Nom",
+      "price": "Prix",
+      "loading": "Chargement des produits..."
+    },
+    "about": {
+      "title": "À propos de TechSolutions",
+      "description": "Autonomiser les entreprises grâce à des solutions technologiques innovantes depuis 2015",
+      "mission": {
+        "title": "Notre Mission",
+        "description": "Permettre aux entreprises de disposer de solutions technologiques de pointe qui favorisent la croissance, l'efficacité et l'innovation. Nous nous engageons à offrir une valeur exceptionnelle grâce à notre équipement informatique haut de gamme et à nos services de développement experts.",
+        "partnerWithUs": "Collaborer avec nous"
+      },
+      "values": {
+        "title": "Nos Valeurs",
+        "innovation": {
+          "title": "Innovation",
+          "description": "Repousser constamment les limites pour offrir des solutions de pointe"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Engagés à fournir la plus haute qualité dans tout ce que nous faisons"
+        },
+        "customerFocus": {
+          "title": "Focus Client",
+          "description": "Votre succès est notre priorité - nous nous engageons à dépasser vos attentes"
+        },
+        "integrity": {
+          "title": "Intégrité",
+          "description": "Bâtir la confiance grâce à la transparence et des pratiques commerciales éthiques"
+        }
+      },
+      "team": {
+        "title": "Notre Équipe de Direction",
+        "description": "Rencontrez les experts derrière BestOf qui sont passionnés par l'excellence en technologie"
+      },
+      "cta": {
+        "title": "Rejoignez Notre Aventure",
+        "description": "Faites partie de notre mission de transformer les entreprises grâce à la technologie",
+        "contactUs": "Contactez-nous"
+      }
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "description": "Vous avez une question ou un projet en tête ? Nous aimerions vous entendre.",
+      "form": {
+        "title": "Envoyez-nous un message",
+        "description": "Remplissez le formulaire ci-dessous et nous vous répondrons dès que possible.",
+        "name": "Nom",
+        "email": "Email",
+        "company": "Entreprise",
+        "message": "Message",
+        "sending": "Envoi en cours...",
+        "send": "Envoyer le message",
+        "success": "Merci pour votre message. Nous vous répondrons bientôt !"
+      },
+      "quickContact": {
+        "title": "Contact Rapide",
+        "phone": "Téléphone",
+        "email": "Email",
+        "businessHours": "Heures d'ouverture"
+      },
+      "offices": {
+        "title": "Nos Bureaux"
+      }
+    },
+    "services": {
+      "title": "Services de Développement et de Conseil",
+      "description": "Transformez votre entreprise avec nos solutions technologiques complètes",
+      "web": {
+        "title": "Développement Web",
+        "description": "Applications web personnalisées construites avec des technologies modernes",
+        "features": [
+          "Design Responsive",
+          "Applications Web Progressives",
+          "Solutions E-commerce",
+          "Systèmes de Gestion de Contenu"
+        ]
+      },
+      "mobile": {
+        "title": "Développement Mobile",
+        "description": "Applications mobiles natives et multi-plateformes",
+        "features": ["Développement iOS", "Développement Android", "Solutions Multi-plateformes", "Design UI/UX Mobile"]
+      },
+      "consulting": {
+        "title": "Conseil Informatique",
+        "description": "Conseil technologique stratégique et transformation digitale",
+        "features": [
+          "Évaluation Technologique",
+          "Stratégie Digitale",
+          "Optimisation des Processus",
+          "Conseil en Sécurité"
+        ]
+      },
+      "caseStudies": {
+        "title": "Études de Cas",
+        "keyResults": "Résultats Clés"
+      },
+      "cta": {
+        "title": "Prêt à Transformer Votre Entreprise ?",
+        "description": "Discutons de la façon dont nos solutions technologiques peuvent vous aider à atteindre vos objectifs commerciaux",
+        "getStarted": "Commencer"
+      },
+      "Navbar": {
+        "home": "Accueil",
+        "products": "Produits",
+        "about": "À propos",
+        "contact": "Contact",
+        "getStarted": "Commencer"
+      }
+    }
+
+  }
+  
+  
