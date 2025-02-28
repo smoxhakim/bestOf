@@ -1,31 +1,38 @@
-// bestOf/middleware.ts
 import { NextResponse } from "next/server"
 import { getToken } from "next-auth/jwt"
 import type { NextRequest } from "next/server"
 import createMiddleware from "next-intl/middleware"
 import { locales, defaultLocale } from "./i18n.config"
 
-const localesArray = Array.isArray(locales) ? locales : Object.values(locales);
+const localesArray = Array.isArray(locales) ? locales : Object.values(locales)
 
 // Create the next-intl middleware
 const intlMiddleware = createMiddleware({
   locales: localesArray,
   defaultLocale: defaultLocale,
-  localePrefix: "as-needed",
+  localePrefix: "always", // Changed from "as-needed" to "always"
 })
 
 export async function middleware(req: NextRequest) {
   const publicPatterns = ["/", "/products", "/services", "/about", "/contact", "/auth/signin"]
-  const isPublicPage = publicPatterns.some((pattern) => req.nextUrl.pathname.startsWith(pattern))
+  const isPublicPage = publicPatterns.some(
+    (pattern) =>
+      req.nextUrl.pathname === pattern || // Exact match for root path
+      (pattern !== "/" && req.nextUrl.pathname.startsWith(pattern)), // Prefix match for other paths
+  )
+
+  // Handle root path redirect
+  if (req.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, req.url))
+  }
 
   // For public routes, use the intl middleware
- if (isPublicPage) {
-    // Wrap the intlMiddleware call in a try-catch block for better error handling
+  if (isPublicPage) {
     try {
-      return await intlMiddleware(req);
+      return await intlMiddleware(req)
     } catch (error) {
-      console.error('Error in intlMiddleware:', error);
-      return new Response('Internal Server Error', { status: 500 });
+      console.error("Error in intlMiddleware:", error)
+      return new Response("Internal Server Error", { status: 500 })
     }
   }
 
@@ -34,7 +41,6 @@ export async function middleware(req: NextRequest) {
   // Add security headers
   response.headers.set("X-Frame-Options", "DENY")
   response.headers.set("X-Content-Type-Options", "nosniff")
-  response.headers.set("Referrer-Policy", "origin-when-cross-origin")
   response.headers.set("Referrer-Policy", "origin-when-cross-origin")
   response.headers.set(
     "Content-Security-Policy",
