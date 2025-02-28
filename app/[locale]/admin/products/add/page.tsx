@@ -1,4 +1,3 @@
-// bestOf/app/admin/add/products/page.tsx
 "use client"
 
 import { useState, useEffect } from "react"
@@ -22,6 +21,8 @@ const productSchema = z.object({
     .regex(/^\d+(\.\d{1,2})?$/, "Invalid price format"),
   imageUrl: z.string().url("Invalid URL").optional().or(z.literal("")),
   categoryId: z.string().min(1, "Category is required"),
+  specs: z.string().optional(),
+  features: z.string().optional(),
 })
 
 export default function AddProduct() {
@@ -38,6 +39,8 @@ export default function AddProduct() {
       price: "",
       imageUrl: "",
       categoryId: "",
+      specs: "",
+      features: "",
     },
   })
 
@@ -60,7 +63,7 @@ export default function AddProduct() {
     fetchCategories()
   }, [toast])
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: z.infer<typeof productSchema>) => {
     setIsSubmitting(true)
     try {
       const response = await fetch("/api/products", {
@@ -69,6 +72,7 @@ export default function AddProduct() {
         body: JSON.stringify({
           ...data,
           price: Number.parseFloat(data.price),
+          features: data.features ? data.features.split(",").map((f) => f.trim()) : [],
         }),
       })
 
@@ -87,7 +91,7 @@ export default function AddProduct() {
       console.error("Error adding product:", error)
       toast({
         title: "Error",
-        description: error.message || "Failed to add product. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to add product. Please try again.",
         variant: "destructive",
       })
     } finally {
@@ -172,6 +176,32 @@ export default function AddProduct() {
                     ))}
                   </SelectContent>
                 </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="specs"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Specifications (JSON format)</FormLabel>
+                <FormControl>
+                  <Textarea placeholder='{"key": "value"}' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="features"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Features (comma-separated)</FormLabel>
+                <FormControl>
+                  <Input placeholder="Feature 1, Feature 2, Feature 3" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

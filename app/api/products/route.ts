@@ -43,3 +43,27 @@ export async function GET(request: Request) {
   }
 }
 
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+    const { name, description, price, imageUrl, categoryId, specs, features } = body
+
+    const product = await prisma.product.create({
+      data: {
+        name,
+        description,
+        price: Number(price),
+        imageUrl,
+        categoryId,
+        specs: specs ? JSON.parse(specs) : null,
+        features: features || [],
+      },
+    })
+
+    return NextResponse.json(product, { status: 201 })
+  } catch (error) {
+    console.error("Error creating product:", error)
+    return NextResponse.json({ error: "Failed to create product", details: error.message }, { status: 500 })
+  }
+}
+
