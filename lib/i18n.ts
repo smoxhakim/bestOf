@@ -1,3 +1,4 @@
+// lib/i18n.ts
 import { notFound } from "next/navigation"
 
 export const defaultLocale = 'en'
@@ -13,7 +14,7 @@ export function getLocale(pathname: string) {
 
 export async function getMessages(locale: string) {
   try {
-    return (await import(`../messages/${locale}.json`)).default
+    return (await import(`@/messages/${locale}.json`)).default
   } catch (error) {
     notFound()
   }

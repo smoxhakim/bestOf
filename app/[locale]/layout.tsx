@@ -40,10 +40,9 @@ export default async function RootLayout({
   params: { locale: string }
 }) {
   // Check if the locale is supported
-  if (!locales.includes(locale)) {
-    // Don't use notFound() here, it will be handled by middleware
-    // or by creating a not-found.tsx page
-    return null;
+  if (!locales.includes(locale as any)) {
+    // Default to English if locale is not supported
+    locale = defaultLocale;
   }
   
   const messages = await loadMessages(locale);
