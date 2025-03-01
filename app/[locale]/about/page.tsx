@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Users, Target, Award, Rocket, Heart, Shield, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 const values = [
   {
@@ -99,7 +100,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
               <p className="text-lg text-muted-foreground mb-8">
                 To empower businesses with cutting-edge technology solutions that drive growth, 
-                efficiency, and innovation. We're committed to delivering exceptional value through 
+                efficiency, and innovation. We&apos;re committed to delivering exceptional value through 
                 our premium IT equipment and expert development services.
               </p>
               <Button size="lg" variant="outline" asChild>
@@ -166,7 +167,9 @@ export default function AboutPage() {
                 className="bg-card rounded-lg shadow-sm overflow-hidden"
               >
                 <div className="relative h-48">
-                  <img
+                  <Image
+                    width={500}
+                    height={500}
                     src={member.image}
                     alt={member.name}
                     className="object-cover w-full h-full"

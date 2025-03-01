@@ -10,8 +10,21 @@ import { ProductSkeleton } from "@/components/product-skeleton"
 import { DeleteProductDialog } from "@/components/delete-product-dialog"
 import Image from "next/image"
 
+// Define the Product interface
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl?: string;
+  // Add other properties as needed
+  description?: string;
+  categoryId?: string;
+  features?: string[];
+  specs?: Record<string, any>;
+}
+
 export default function ProductList() {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

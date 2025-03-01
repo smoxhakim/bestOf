@@ -16,8 +16,7 @@ export function Providers({ children, locale, messages }: ProvidersProps) {
       <ThemeProvider 
         attribute="class" 
         defaultTheme="system" 
-        enableSystem 
-        suppressHydrationWarning
+        enableSystem
       >
         {children}
       </ThemeProvider>
