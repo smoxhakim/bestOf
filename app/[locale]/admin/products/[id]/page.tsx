@@ -12,6 +12,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+// Define the Category interface
+interface Category {
+  id: string;
+  name: string;
+}
+
 const productSchema = z.object({
   name: z.string().min(1, "Product name is required"),
   description: z.string().min(1, "Description is required"),
@@ -31,7 +37,8 @@ export default function EditProduct({ params }: { params: { id: string } }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { id } = params
 
-  const [categories, setCategories] = useState([])
+  // Properly type the categories state
+  const [categories, setCategories] = useState<Category[]>([])
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -251,4 +258,3 @@ export default function EditProduct({ params }: { params: { id: string } }) {
     </motion.div>
   )
 }
-

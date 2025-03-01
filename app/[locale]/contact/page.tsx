@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card } from '@/components/ui/card'
 import { MapPin, Phone, Mail, Clock, MessageSquare, Building, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 const offices = [
   {
@@ -82,7 +83,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have a question or project in mind? We'd love to hear from you.
+            Have a question or project in mind? We&apos;d love to hear from you.
           </p>
         </motion.div>
 
@@ -101,7 +102,7 @@ export default function ContactPage() {
               </div>
               <h2 className="text-2xl font-bold mb-2">Send us a Message</h2>
               <p className="text-muted-foreground">
-                Fill out the form below and we'll get back to you as soon as possible.
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
               </p>
             </div>
 
@@ -225,10 +226,12 @@ export default function ContactPage() {
                     className="bg-primary/10 rounded-lg shadow-sm overflow-hidden"
                   >
                     <div className="relative h-48">
-                      <img
+                      <Image
                         src={office.image}
                         alt={office.city}
                         className="object-cover w-full h-full"
+                        width={700}
+                        height={500}
                       />
                     </div>
                     <div className="p-6">

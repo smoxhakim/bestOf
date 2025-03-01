@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Code, Smartphone, Globe, Database, Server, Lightbulb, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 const services = [
   {
@@ -183,7 +184,9 @@ export default function ServicesPage() {
                         <Card>
                           <CardHeader>
                             <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
-                              <img
+                              <Image
+                                width={700}
+                                height={500}
                                 src={study.image}
                                 alt={study.title}
                                 className="object-cover w-full h-full transition-transform group-hover:scale-105"
@@ -222,7 +225,7 @@ export default function ServicesPage() {
         >
           <h2 className="text-2xl font-bold mb-4">Ready to Transform Your Business?</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Let's discuss how our technology solutions can help you achieve your business goals
+            Let&apos;s discuss how our technology solutions can help you achieve your business goals
           </p>
           <Button size="lg" asChild>
             <a href="/contact">Get Started</a>

@@ -7,6 +7,7 @@ import  Navbar  from '@/components/navbar'
 import Footer from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { Providers } from '@/components/providers'
+import { defaultLocale } from '@/lib/i18n';
 
 const inter = Inter({ subsets: ["latin"] })
 

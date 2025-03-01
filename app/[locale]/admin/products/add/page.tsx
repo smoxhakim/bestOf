@@ -12,6 +12,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 
+// Define the Category interface
+interface Category {
+  id: string;
+  name: string;
+}
+
 const productSchema = z.object({
   name: z.string().min(1, "Product name is required"),
   description: z.string().min(1, "Description is required"),
@@ -29,7 +35,8 @@ export default function AddProduct() {
   const router = useRouter()
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [categories, setCategories] = useState([])
+  // Properly type the categories state
+  const [categories, setCategories] = useState<Category[]>([])
 
   const form = useForm({
     resolver: zodResolver(productSchema),
@@ -214,4 +221,3 @@ export default function AddProduct() {
     </>
   )
 }
-

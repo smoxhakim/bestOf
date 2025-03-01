@@ -33,6 +33,14 @@ export default function CategoriesPage() {
   })
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/api/categories")
+        // Handle response...
+      } catch (error) {
+        console.error("Error fetching categories:", error)
+      }
+    }
     fetchCategories()
   }, [])
 

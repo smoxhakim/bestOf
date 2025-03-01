@@ -65,8 +65,8 @@ export function DeleteProductDialog({ productId, productName, onDelete }: Delete
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure you want to delete this product?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the product "{productName}" and remove it from
-              our servers.
+              {`This action cannot be undone. This will permanently delete the product "{productName}" and remove it from
+              our servers.`}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
