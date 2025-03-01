@@ -5,19 +5,26 @@ export async function getProductData(id: string): Promise<ProductDetailed | null
   try {
     const product = await prisma.product.findUnique({
       where: { id },
+      include: {
+        category: true, // Include the category relation
+      },
     })
 
     if (!product) return null
 
     // Convert the product to ProductDetailed type
-    // You might need to adjust this based on your actual data structure
     return {
-      ...product,
+      id: product.id,
+      name: product.name,
+      category: product.category.name,
+      price: product.price,
+      description: product.description,
+      icon: "/default-icon.svg", 
       specs: product.specs as Record<string, string>,
       features: product.features as string[],
-      gallery: [product.imageUrl], // Assuming you don't have a separate gallery field
-      stock: 10, // You might want to add this field to your database
-      rating: 4.5, // You might want to add this field to your database
+      gallery: [product.imageUrl], 
+      stock: 10, 
+      rating: 4.5,
     }
   } catch (error) {
     console.error("Error fetching product:", error)

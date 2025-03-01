@@ -34,6 +34,9 @@ model Product {
   features    String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  icon        String?
+  stock       Int     @default(10)
+  rating      Float   @default(4.5)
 }
 
 model Category {
