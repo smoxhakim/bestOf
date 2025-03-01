@@ -38,7 +38,7 @@ next-env.d.ts
 
 
 hashPassword.js
-scripts/add-admin.js
+/scripts/add-admin.js
 
 
 ...existing code...
