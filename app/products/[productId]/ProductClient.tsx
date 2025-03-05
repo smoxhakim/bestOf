@@ -11,7 +11,7 @@ import Image from "next/image"
 import { Monitor, Laptop, Mouse, HardDrive, Cpu, Router } from "lucide-react"
 import type { ProductDetailed } from "./types"
 import { toast } from 'react-hot-toast'
-import OrderModal from '@/app/components/OrderModal'
+import OrderModal from '@/components/OrderModal'
 import { useRouter } from 'next/navigation'
 
 export default function ProductClient({ product }: { product: ProductDetailed | null }) {

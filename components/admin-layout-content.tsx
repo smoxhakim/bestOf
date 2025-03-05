@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, LayoutDashboard, Package, Settings, LogOut, List, Menu, X, Bell, User } from "lucide-react"
+import { Search, LayoutDashboard, Package, Settings, LogOut, List, Menu, X, Bell, User, ShoppingBag } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { useState } from "react"
 import {
@@ -25,6 +25,7 @@ const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
   { icon: Package, label: "Products", href: "/admin/products" },
   { icon: List, label: "Categories", href: "/admin/categories" },
+  { icon: ShoppingBag, label: "Orders", href: "/admin/orders" },
 ]
 
 export default function AdminLayoutContent({ children }: { children: React.ReactNode }) {
