@@ -54,7 +54,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/services/app-development" className="text-muted-foreground hover:text-foreground">
-                  Développement d'Applications
+                  Développement d&apos;Applications
                 </Link>
               </li>
               <li>
@@ -105,7 +105,7 @@ export default function Footer() {
                 Politique de Confidentialité
               </Link>
               <Link href="/terms" className="text-muted-foreground hover:text-foreground">
-                Conditions d'Utilisation
+                Conditions d&apos;Utilisation
               </Link>
             </div>
           </div>
