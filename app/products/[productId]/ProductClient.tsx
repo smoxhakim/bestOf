@@ -10,9 +10,14 @@ import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import { Monitor, Laptop, Mouse, HardDrive, Cpu, Router } from "lucide-react"
 import type { ProductDetailed } from "./types"
+import { toast } from 'react-hot-toast'
+import OrderModal from '@/app/components/OrderModal'
+import { useRouter } from 'next/navigation'
 
 export default function ProductClient({ product }: { product: ProductDetailed | null }) {
   const [selectedImage, setSelectedImage] = useState(0)
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
+  const router = useRouter()
 
   // Animation variants
   const fadeIn = {
@@ -30,6 +35,13 @@ export default function ProductClient({ product }: { product: ProductDetailed | 
       Router: <Router className="h-8 w-8" />,
     }
     return iconMap[iconName as keyof typeof iconMap] || null
+  }
+
+  const handleOrderSuccess = () => {
+    toast.success('Your order is placed successfully! Our team will call you soon for confirmation.')
+    setTimeout(() => {
+      router.refresh()
+    }, 3000)
   }
 
   if (!product) {
@@ -145,14 +157,22 @@ export default function ProductClient({ product }: { product: ProductDetailed | 
             </Tabs>
 
             <div className="flex gap-4">
-              <Button size="lg" className="flex-1">
+              <Button size="lg" className="flex-1" onClick={() => setIsOrderModalOpen(true)}>
                 <ShoppingCart className="mr-2 h-5 w-5" />
-                Add to Cart
+                Order Now
               </Button>
             </div>
           </div>
         </motion.div>
       </div>
+
+      <OrderModal
+        isOpen={isOrderModalOpen}
+        onClose={() => setIsOrderModalOpen(false)}
+        productId={product.id}
+        productName={product.name}
+        onSuccess={handleOrderSuccess}
+      />
     </div>
   )
 }
