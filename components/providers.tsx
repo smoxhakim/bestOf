@@ -1,25 +1,20 @@
 'use client'
 
 import { ThemeProvider } from 'next-themes'
-import { NextIntlClientProvider } from 'next-intl'
 import { ReactNode } from 'react'
 
 interface ProvidersProps {
   children: ReactNode
-  locale: string
-  messages: any
 }
 
-export function Providers({ children, locale, messages }: ProvidersProps) {
+export function Providers({ children }: ProvidersProps) {
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <ThemeProvider 
-        attribute="class" 
-        defaultTheme="system" 
-        enableSystem
-      >
-        {children}
-      </ThemeProvider>
-    </NextIntlClientProvider>
+    <ThemeProvider 
+      attribute="class" 
+      defaultTheme="system" 
+      enableSystem
+    >
+      {children}
+    </ThemeProvider>
   )
-}
+} 

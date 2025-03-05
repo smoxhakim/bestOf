@@ -7,37 +7,19 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Monitor, ShoppingCart, Code, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import LanguageSwitcher from "@/components/language-switcher"
 
 interface NavbarProps {
-  translations?: {
-    products?: string
-    services?: string
-    about?: string
-    contact?: string
-    getStarted?: string
-  }
   isLoading?: boolean
 }
 
-const defaultTranslations = {
-  products: "Products",
-  services: "Services",
-  about: "About",
-  contact: "Contact",
-  getStarted: "Get Started",
-}
-
-const Navbar: React.FC<NavbarProps> = ({ translations = {}, isLoading = false }) => {
+export default function Navbar({ isLoading = false }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const t = { ...defaultTranslations, ...translations }
-
   const menuItems = [
-    { href: "/products", label: t.products, icon: ShoppingCart },
-    { href: "/services", label: t.services, icon: Code },
-    { href: "/about", label: t.about, icon: Monitor },
-    { href: "/contact", label: t.contact },
+    { href: "/products", label: "Produits", icon: ShoppingCart },
+    { href: "/services", label: "Services", icon: Code },
+    { href: "/about", label: "À Propos", icon: Monitor },
+    { href: "/contact", label: "Contact" },
   ]
 
   if (isLoading) {
@@ -68,8 +50,6 @@ const Navbar: React.FC<NavbarProps> = ({ translations = {}, isLoading = false })
                 {item.label}
               </Link>
             ))}
-            {/* Using the dedicated language switcher component */}
-            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -103,16 +83,10 @@ const Navbar: React.FC<NavbarProps> = ({ translations = {}, isLoading = false })
                 {item.label}
               </Link>
             ))}
-            <div className="flex justify-between items-center px-3 py-2">
-              <span className="text-base font-medium text-foreground">Language</span>
-              <LanguageSwitcher />
-            </div>
-            <Button className="w-full mt-4">{t.getStarted}</Button>
+            <Button className="w-full mt-4">Commencer</Button>
           </div>
         </motion.div>
       )}
     </nav>
   )
 }
-
-export default Navbar

@@ -77,10 +77,10 @@ export default function AboutPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl font-bold tracking-tight mb-4">
-            About TechSolutions
+            About BestOf
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Empowering businesses through innovative technology solutions since 2015
+            Empowering businesses through innovative technology solutions
           </p>
         </motion.div>
 

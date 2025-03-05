@@ -1,10 +1,9 @@
+'use client'
+
 import Link from "next/link"
 import { Monitor } from "lucide-react"
-import { useTranslations } from "next-intl"
 
-const Footer = () => {
-  const t = useTranslations("common.footer")
-
+export default function Footer() {
   return (
     <footer className="bg-background border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -15,83 +14,83 @@ const Footer = () => {
               <span className="font-bold text-xl">TechSolutions</span>
             </Link>
             <p className="text-muted-foreground">
-              Empowering businesses with cutting-edge technology solutions and professional development services.
+              Autonomiser les entreprises avec des solutions technologiques de pointe et des services de développement professionnels.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">{t("products")}</h3>
+            <h3 className="font-semibold mb-4">Produits</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/products/computers" className="text-muted-foreground hover:text-foreground">
-                  {t("computers")}
+                  Ordinateurs
                 </Link>
               </li>
               <li>
                 <Link href="/products/laptops" className="text-muted-foreground hover:text-foreground">
-                  {t("laptops")}
+                  Ordinateurs Portables
                 </Link>
               </li>
               <li>
                 <Link href="/products/accessories" className="text-muted-foreground hover:text-foreground">
-                  {t("accessories")}
+                  Accessoires
                 </Link>
               </li>
               <li>
                 <Link href="/products/networking" className="text-muted-foreground hover:text-foreground">
-                  {t("networking")}
+                  Réseaux
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">{t("services")}</h3>
+            <h3 className="font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/services/web-development" className="text-muted-foreground hover:text-foreground">
-                  {t("webDevelopment")}
+                  Développement Web
                 </Link>
               </li>
               <li>
                 <Link href="/services/app-development" className="text-muted-foreground hover:text-foreground">
-                  {t("appDevelopment")}
+                  Développement d'Applications
                 </Link>
               </li>
               <li>
                 <Link href="/services/consulting" className="text-muted-foreground hover:text-foreground">
-                  {t("itConsulting")}
+                  Conseil Informatique
                 </Link>
               </li>
               <li>
                 <Link href="/services/support" className="text-muted-foreground hover:text-foreground">
-                  {t("technicalSupport")}
+                  Support Technique
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">{t("company")}</h3>
+            <h3 className="font-semibold mb-4">Entreprise</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-muted-foreground hover:text-foreground">
-                  {t("aboutUs")}
+                  À Propos
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-muted-foreground hover:text-foreground">
-                  {t("contact")}
+                  Contact
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="text-muted-foreground hover:text-foreground">
-                  {t("blog")}
+                  Blog
                 </Link>
               </li>
               <li>
                 <Link href="/careers" className="text-muted-foreground hover:text-foreground">
-                  {t("careers")}
+                  Carrières
                 </Link>
               </li>
             </ul>
@@ -100,13 +99,13 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground">{t("copyright")}</p>
+            <p className="text-muted-foreground">© 2024 TechSolutions. Tous droits réservés.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/privacy" className="text-muted-foreground hover:text-foreground">
-                {t("privacyPolicy")}
+                Politique de Confidentialité
               </Link>
               <Link href="/terms" className="text-muted-foreground hover:text-foreground">
-                {t("termsOfService")}
+                Conditions d'Utilisation
               </Link>
             </div>
           </div>
@@ -115,6 +114,4 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer
 

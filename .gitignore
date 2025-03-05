@@ -25,9 +25,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env.local
 .env
 .env.production
+.env.development
 
 # vercel
 .vercel
@@ -36,12 +37,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
+# scripts
+/scripts
 hashPassword.js
-/scripts/
 
-
-...existing code...
+# build artifacts
 .next
 .swc
 node_modules

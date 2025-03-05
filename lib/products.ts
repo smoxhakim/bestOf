@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma"
-import type { ProductDetailed } from "@/app/[locale]/products/[productId]/types"
+import type { ProductDetailed } from "@/app/products/[productId]/types"
 
 export async function getProductData(id: string): Promise<ProductDetailed | null> {
   try {
