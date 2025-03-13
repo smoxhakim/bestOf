@@ -46,3 +46,6 @@ hashPassword.js
 .swc
 node_modules
 .env*.local
+
+# windsurf rules
+.windsurfrules

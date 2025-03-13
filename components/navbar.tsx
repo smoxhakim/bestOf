@@ -2,11 +2,12 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Monitor, ShoppingCart, Code, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface NavbarProps {
   isLoading?: boolean
@@ -14,6 +15,26 @@ interface NavbarProps {
 
 export default function Navbar({ isLoading = false }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const menuItems = [
     { href: "/products", label: "Produits", icon: ShoppingCart },
@@ -41,6 +62,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center md:space-x-8">
+            <ThemeToggle />
             {menuItems.map((item) => (
               <Link
                 key={item.label}
@@ -53,8 +75,12 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <div className="flex items-center">
+              <ThemeToggle />
+            </div>
             <button
+              ref={buttonRef}
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:bg-muted"
             >
@@ -71,6 +97,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           className="md:hidden"
+          ref={menuRef}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-b">
             {menuItems.map((item) => (
@@ -83,7 +110,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
                 {item.label}
               </Link>
             ))}
-            <Button className="w-full mt-4">Commencer</Button>
+
           </div>
         </motion.div>
       )}

@@ -39,6 +39,77 @@ export async function POST(request: Request) {
   }
 }
 
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+    
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Order ID is required' },
+        { status: 400 }
+      )
+    }
+    
+    // Delete the order
+    await prisma.order.delete({
+      where: { id },
+    })
+    
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Order deletion error:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete order' },
+      { status: 500 }
+    )
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+    
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Order ID is required' },
+        { status: 400 }
+      )
+    }
+    
+    const { status } = await request.json()
+    
+    if (!status || !['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED'].includes(status)) {
+      return NextResponse.json(
+        { error: 'Valid status is required' },
+        { status: 400 }
+      )
+    }
+    
+    const updatedOrder = await prisma.order.update({
+      where: { id },
+      data: { status },
+      include: {
+        product: {
+          select: {
+            name: true,
+            price: true,
+          },
+        },
+      },
+    })
+    
+    return NextResponse.json(updatedOrder)
+  } catch (error) {
+    console.error('Order update error:', error)
+    return NextResponse.json(
+      { error: 'Failed to update order status' },
+      { status: 500 }
+    )
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)

@@ -159,61 +159,121 @@ export default function ServicesPage() {
         {/* Case Studies */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8">Case Studies</h2>
-          <Tabs defaultValue="web" className="w-full" onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="web">Web Development</TabsTrigger>
-              <TabsTrigger value="mobile">Mobile Development</TabsTrigger>
-              <TabsTrigger value="consulting">IT Consulting</TabsTrigger>
-            </TabsList>
-            {services.map((service) => (
-              <TabsContent key={service.id} value={service.id}>
-                <motion.div
-                  variants={container}
-                  initial="hidden"
-                  animate="show"
-                  className="flex justify-center"
+          
+          {/* Desktop/Tablet Tabs - Hidden on Mobile */}
+          <div className="hidden sm:block">
+            <Tabs defaultValue="web" className="w-full" onValueChange={setActiveTab}>
+              <TabsList className="grid w-full sm:grid-cols-2 md:grid-cols-3 gap-2 mb-8">
+                <TabsTrigger value="web">Web Development</TabsTrigger>
+                <TabsTrigger value="mobile">Mobile Development</TabsTrigger>
+                <TabsTrigger value="consulting">IT Consulting</TabsTrigger>
+              </TabsList>
+              {services.map((service) => (
+                <TabsContent key={service.id} value={service.id}>
+                  <motion.div
+                    variants={container}
+                    initial="hidden"
+                    animate="show"
+                    className="flex justify-center"
+                  >
+                    {caseStudies
+                      .filter((study) => study.category === service.id)
+                      .map((study) => (
+                        <motion.div
+                          key={study.id}
+                          variants={item}
+                          className="relative group"
+                        >
+                          <Card>
+                            <CardHeader>
+                              <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
+                                <Image
+                                  width={700}
+                                  height={500}
+                                  src={study.image}
+                                  alt={study.title}
+                                  className="object-cover w-full h-full transition-transform group-hover:scale-105"
+                                />
+                              </div>
+                              <CardTitle>{study.title}</CardTitle>
+                              <CardDescription>{study.client}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <p className="mb-4">{study.description}</p>
+                              <h4 className="font-semibold mb-2">Key Results:</h4>
+                              <ul className="space-y-2">
+                                {study.results.map((result, index) => (
+                                  <li key={index} className="flex items-center text-sm">
+                                    <ArrowRight className="h-4 w-4 mr-2 text-primary" />
+                                    {result}
+                                  </li>
+                                ))}
+                              </ul>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      ))}
+                  </motion.div>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+          
+          {/* Mobile Slider - Visible only on Mobile */}
+          <div className="block sm:hidden">
+            <div className="flex mb-4 justify-center space-x-2 overflow-x-auto py-2">
+              {services.map((service) => (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveTab(service.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === service.id ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}
                 >
-                  {caseStudies
-                    .filter((study) => study.category === service.id)
-                    .map((study) => (
-                      <motion.div
-                        key={study.id}
-                        variants={item}
-                        className="relative group"
-                      >
-                        <Card>
-                          <CardHeader>
-                            <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
-                              <Image
-                                width={700}
-                                height={500}
-                                src={study.image}
-                                alt={study.title}
-                                className="object-cover w-full h-full transition-transform group-hover:scale-105"
-                              />
-                            </div>
-                            <CardTitle>{study.title}</CardTitle>
-                            <CardDescription>{study.client}</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="mb-4">{study.description}</p>
-                            <h4 className="font-semibold mb-2">Key Results:</h4>
-                            <ul className="space-y-2">
-                              {study.results.map((result, index) => (
-                                <li key={index} className="flex items-center text-sm">
-                                  <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                                  {result}
-                                </li>
-                              ))}
-                            </ul>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    ))}
-                </motion.div>
-              </TabsContent>
-            ))}
-          </Tabs>
+                  {service.id === 'web' ? 'Web Dev' : service.id === 'mobile' ? 'Mobile Dev' : 'IT Consulting'}
+                </button>
+              ))}
+            </div>
+            
+            <div className="overflow-x-auto pb-4 snap-x snap-mandatory flex justify-center space-x-4 scrollbar-hide px-4">
+              {caseStudies
+                .filter((study) => study.category === activeTab)
+                .map((study) => (
+                  <div 
+                    key={study.id} 
+                    className="snap-center flex-shrink-0 w-[85vw] max-w-sm mx-auto"
+                  >
+                    <Card className="h-full">
+                      <CardHeader className="p-0">
+                        <div className="relative h-48 rounded-t-lg overflow-hidden">
+                          <Image 
+                            width={700}
+                            height={500}
+                            src={study.image} 
+                            alt={study.title} 
+                            className="w-full h-full object-cover" 
+                          />
+                        </div>
+                        <div className="p-4">
+                          <CardTitle className="text-lg">{study.title}</CardTitle>
+                          <CardDescription>{study.client}</CardDescription>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm mb-3">{study.description}</p>
+                        <h4 className="font-semibold text-sm mb-2">Key Results:</h4>
+                        <ul className="space-y-1">
+                          {study.results.map((result, index) => (
+                            <li key={index} className="flex items-start text-xs">
+                              <ArrowRight className="h-3 w-3 mr-1 mt-0.5 text-primary flex-shrink-0" />
+                              <span>{result}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
 
         {/* CTA Section */}
