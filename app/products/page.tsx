@@ -118,16 +118,16 @@ export default function ProductsPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold tracking-tight mb-4">Premium IT Equipment</h1>
+          <h1 className="text-4xl font-bold tracking-tight mb-4">BESTOF – La tech au service de votre savoir</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover our range of high-quality computer equipment for your business needs
+            Découvrez notre gamme complète de produits et services informatiques pour propulser votre entreprise vers le succès.
           </p>
         </motion.div>
 
         {/* Filters */}
         <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           <Input
-            placeholder="Search products..."
+            placeholder="Rechercher des produits..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full"
@@ -135,7 +135,7 @@ export default function ProductsPage() {
 
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
             <SelectTrigger>
-              <SelectValue placeholder="Category" />
+              <SelectValue placeholder="Catégorie" />
             </SelectTrigger>
             <SelectContent>
               {categories.map((category) => (
@@ -148,11 +148,11 @@ export default function ProductsPage() {
 
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger>
-              <SelectValue placeholder="Sort by" />
+              <SelectValue placeholder="Trier par" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="name">Name</SelectItem>
-              <SelectItem value="price">Price</SelectItem>
+              <SelectItem value="name">Nom</SelectItem>
+              <SelectItem value="price">Prix</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -160,7 +160,7 @@ export default function ProductsPage() {
         {/* Products Grid */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <p className="text-xl text-muted-foreground">Loading products...</p>
+            <p className="text-xl text-muted-foreground">Chargement des produits...</p>
           </div>
         ) : (
           <motion.div
@@ -189,7 +189,7 @@ export default function ProductsPage() {
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-muted-foreground">{product.category.name}</span>
                     <Button asChild>
-                      <Link href={`/products/${product.id}`}>Learn More</Link>
+                      <Link href={`/products/${product.id}`}>En savoir plus</Link>
                     </Button>
                   </div>
                 </motion.div>

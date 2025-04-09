@@ -7,7 +7,12 @@
     "start": "next start",
     "lint": "next lint --fix",
     "postinstall": "prisma generate",
-    "build": "next build"
+    "build": "next build",
+    "add-admin": "node scripts/add-admin.js",
+    "add-specific-admin": "node scripts/add-specific-admin.js",
+    "add-sample-companies": "node scripts/add-sample-companies.js",
+    "migrate-blog": "node scripts/migrate-blog-model.js",
+    "add-sample-blog-posts": "node scripts/add-sample-blog-posts.js"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -83,6 +88,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/inquirer": "^9.0.7",
-    "prisma": "^6.4.1"
+    "prisma": "^6.4.1",
+    "ts-node": "^10.9.2"
   }
 }

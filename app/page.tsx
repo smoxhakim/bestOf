@@ -32,7 +32,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 dark:from-foreground dark:to-foreground/70">Solutions Technologiques Professionnelles</h1>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 dark:from-foreground dark:to-foreground/70">BESTOF – La tech au service de votre savoir</h1>
               <p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto">Découvrez notre gamme complète de produits et services informatiques pour propulser votre entreprise vers le succès.</p>
               <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto">
                 <Button 
@@ -76,7 +76,7 @@ export default function Home() {
           >
             <div className="bg-card p-6 rounded-lg shadow-sm">
               <Monitor className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Équipement Premium</h3>
+              <h3 className="text-xl font-semibold mb-2">Vente des matériels informatiques</h3>
               <p className="text-muted-foreground mb-4">Découvrez notre sélection d&apos;équipements informatiques haut de gamme pour optimiser votre environnement de travail.</p>
               <Link href="/products" className="group inline-flex items-center text-primary hover:text-primary/90">
                 En savoir plus{" "}
@@ -86,7 +86,7 @@ export default function Home() {
 
             <div className="bg-card p-6 rounded-lg shadow-sm">
               <Code className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Services de Développement</h3>
+              <h3 className="text-xl font-semibold mb-2">Création des sites web</h3>
               <p className="text-muted-foreground mb-4">Des solutions sur mesure pour vos projets web et applications, développées par nos experts.</p>
               <Link href="/services" className="group inline-flex items-center text-primary hover:text-primary/90">
                 En savoir plus{" "}

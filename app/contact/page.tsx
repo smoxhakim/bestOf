@@ -15,9 +15,9 @@ const offices = [
   {
     city: 'CasaBlanca',
     address: '123 Tech Avenue, NY 10001',
-    phone: '+1 (555) 123-4567',
-    email: 'nyc@techsolutions.com',
-    hours: 'Mon-Fri: 9:00 AM - 6:00 PM',
+    phone: '+212 6 61 52 37 44',
+    email: 'hichamessadi@bestoftech.ma',
+    hours: 'Lun-Ven: 9h00 - 18h00',
     image: 'https://images.unsplash.com/photo-1579017461826-8ea20d5cdb28?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FzYWJsYW5jYXxlbnwwfHwwfHx8MA%3D%3D',
   },
 ]
@@ -46,7 +46,7 @@ export default function ContactPage() {
     setIsSubmitting(false)
     
     // Show success message (you can implement a toast notification here)
-    alert('Thank you for your message. We will get back to you soon!')
+    alert('Merci pour votre message. Nous vous répondrons bientôt !')
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -80,10 +80,10 @@ export default function ContactPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl font-bold tracking-tight mb-4">
-            Get in Touch
+            Contactez-nous
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have a question or project in mind? We&apos;d love to hear from you.
+            Vous avez une question ou un projet en tête ? Nous serions ravis de vous entendre.
           </p>
         </motion.div>
 
@@ -100,16 +100,16 @@ export default function ContactPage() {
               <div className="inline-block p-3 bg-primary/10 rounded-lg mb-4">
                 <MessageSquare className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold mb-2">Send us a Message</h2>
+              <h2 className="text-2xl font-bold mb-2">Envoyez-nous un message</h2>
               <p className="text-muted-foreground">
-                Fill out the form below and we&apos;ll get back to you as soon as possible.
+                Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <motion.div variants={item}>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
+                  Nom
                 </label>
                 <Input
                   id="name"
@@ -123,7 +123,7 @@ export default function ContactPage() {
 
               <motion.div variants={item}>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
+                  E-mail
                 </label>
                 <Input
                   id="email"
@@ -138,7 +138,7 @@ export default function ContactPage() {
 
               <motion.div variants={item}>
                 <label htmlFor="company" className="block text-sm font-medium mb-2">
-                  Company
+                  Entreprise
                 </label>
                 <Input
                   id="company"
@@ -165,7 +165,7 @@ export default function ContactPage() {
 
               <motion.div variants={item}>
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
                 </Button>
               </motion.div>
             </form>
@@ -183,27 +183,27 @@ export default function ContactPage() {
               <div className="inline-block p-3 bg-primary/10 rounded-lg mb-6">
                 <Building className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold mb-6">Quick Contact</h2>
+              <h2 className="text-2xl font-bold mb-6">Contact Rapide</h2>
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
                   <Phone className="h-5 w-5 text-primary mt-1" />
                   <div>
-                    <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="font-medium">Téléphone</p>
+                    <p className="text-muted-foreground">+212 6 61 52 37 44</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Mail className="h-5 w-5 text-primary mt-1" />
                   <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">info@techsolutions.com</p>
+                    <p className="font-medium">E-mail</p>
+                    <p className="text-muted-foreground">hichamessadi@bestoftech.ma</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Clock className="h-5 w-5 text-primary mt-1" />
                   <div>
-                    <p className="font-medium">Business Hours</p>
-                    <p className="text-muted-foreground">Mon-Fri: 9:00 AM - 6:00 PM</p>
+                    <p className="font-medium">Heures d&apos;ouverture</p>
+                    <p className="text-muted-foreground">Lun-Ven: 9h00 - 18h00</p>
                   </div>
                 </div>
               </div>
@@ -216,7 +216,7 @@ export default function ContactPage() {
               animate={officesInView ? "show" : "hidden"}
               variants={container}
             >
-              <h2 className="text-2xl font-bold mb-6">Our Offices</h2>
+              <h2 className="text-2xl font-bold mb-6">Nos Bureaux</h2>
               <div className="space-y-6">
                 {offices.map((office, index) => (
                   <motion.div

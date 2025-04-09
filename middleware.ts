@@ -19,10 +19,10 @@ export async function middleware(req: NextRequest) {
   response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload")
 
   // Protect admin routes
-  if (pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
     if (!token || token.role !== "ADMIN") {
-      return NextResponse.redirect(new URL("/auth/signin", req.url))
+      return NextResponse.redirect(new URL("/admin/login", req.url))
     }
   }
   
