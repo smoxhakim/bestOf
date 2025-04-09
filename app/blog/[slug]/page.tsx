@@ -172,6 +172,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = '/placeholder.png'
                 }}
+                unoptimized={true}
               />
             </div>
           )}

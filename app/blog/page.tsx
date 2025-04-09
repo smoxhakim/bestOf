@@ -154,6 +154,7 @@ export default function BlogPage() {
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/placeholder.png'
                         }}
+                        unoptimized={true}
                       />
                     ) : (
                       <div className="flex items-center justify-center h-full bg-muted">

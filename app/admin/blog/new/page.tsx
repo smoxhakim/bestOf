@@ -132,9 +132,11 @@ export default function NewBlogPost() {
                         <Input 
                           placeholder="Enter post title" 
                           {...field} 
-                          onBlur={() => {
+                          onChange={(e) => {
+                            field.onChange(e)
+                            // Auto-generate slug when title changes if slug is empty
                             if (!form.getValues("slug")) {
-                              generateSlug()
+                              setTimeout(generateSlug, 500)
                             }
                           }}
                         />
@@ -149,23 +151,22 @@ export default function NewBlogPost() {
                   name="slug"
                   render={({ field }) => (
                     <FormItem>
-                      <div className="flex items-center justify-between">
-                        <FormLabel>Slug</FormLabel>
+                      <FormLabel>Slug</FormLabel>
+                      <div className="flex space-x-2">
+                        <FormControl>
+                          <Input placeholder="post-slug" {...field} />
+                        </FormControl>
                         <Button 
                           type="button" 
-                          variant="ghost" 
-                          size="sm" 
+                          variant="outline" 
                           onClick={generateSlug}
-                          className="text-xs h-8"
+                          className="shrink-0"
                         >
-                          Generate from title
+                          Generate
                         </Button>
                       </div>
-                      <FormControl>
-                        <Input placeholder="enter-post-slug" {...field} />
-                      </FormControl>
                       <FormDescription>
-                        This will be used in the URL of your post
+                        URL-friendly version of the title
                       </FormDescription>
                       <FormMessage />
                     </FormItem>

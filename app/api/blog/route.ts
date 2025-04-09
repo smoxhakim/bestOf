@@ -48,8 +48,11 @@ export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions)
     
-    // Check if user is authenticated and has admin role
-    if (!session || session.user.role !== "ADMIN") {
+    // In development, allow creating posts without authentication
+    const isDevelopment = process.env.NODE_ENV === "development"
+    
+    // Check if user is authenticated and has admin role (skip in development)
+    if (!isDevelopment && (!session || session.user.role !== "ADMIN")) {
       return NextResponse.json(
         { error: "Unauthorized" },
         { status: 401 }
@@ -86,6 +89,38 @@ export async function POST(req: Request) {
       )
     }
     
+    // In development mode, first find or create a user to use as author
+    let authorId = session?.user?.id
+    
+    if (!authorId && isDevelopment) {
+      // Try to find an admin user
+      const adminUser = await db.user.findFirst({
+        where: { role: "ADMIN" }
+      })
+      
+      if (adminUser) {
+        authorId = adminUser.id
+      } else {
+        // If no admin user exists, create one
+        const newAdmin = await db.user.create({
+          data: {
+            name: "Admin User",
+            email: "admin@example.com",
+            password: "$2a$10$GQH.xZm5x6FzEQJ3L6RVKuH4qVlAWx9dq.tWD8y.5Xs1aMDF9oZHm", // hashed 'password123'
+            role: "ADMIN"
+          }
+        })
+        authorId = newAdmin.id
+      }
+    }
+    
+    if (!authorId) {
+      return NextResponse.json(
+        { error: "No valid author found" },
+        { status: 500 }
+      )
+    }
+    
     // Create new blog post
     const post = await db.blogPost.create({
       data: {
@@ -96,7 +131,7 @@ export async function POST(req: Request) {
         coverImage: body.coverImage || null,
         published: body.published || false,
         tags: body.tags || [],
-        authorId: session.user.id,
+        authorId: authorId,
       },
     })
     
