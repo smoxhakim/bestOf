@@ -134,7 +134,45 @@ export async function POST(req: Request) {
       }
     }
     
+    // If we still don't have an authorId, try to find a valid user
     if (!authorId) {
+      console.log("No author ID from session, trying to find a valid user")
+      
+      // First try to find the current user by email if available
+      if (session?.user?.email) {
+        const userByEmail = await db.user.findUnique({
+          where: { email: session.user.email }
+        })
+        
+        if (userByEmail) {
+          console.log("Found user by email:", userByEmail.name)
+          authorId = userByEmail.id
+        }
+      }
+      
+      // If still no author, try to find any admin user
+      if (!authorId) {
+        const adminUser = await db.user.findFirst({
+          where: { role: "ADMIN" }
+        })
+        
+        if (adminUser) {
+          console.log("Using admin user as fallback:", adminUser.name)
+          authorId = adminUser.id
+        } else {
+          // Last resort: use any user
+          const anyUser = await db.user.findFirst({})
+          if (anyUser) {
+            console.log("Using any user as fallback:", anyUser.name)
+            authorId = anyUser.id
+          }
+        }
+      }
+    }
+    
+    // If we still don't have an authorId after all attempts, return an error
+    if (!authorId) {
+      console.error("Failed to find any valid author ID")
       return corsHeaders(NextResponse.json(
         { error: "No valid author found. Please ensure you are logged in as an admin user." },
         { status: 500 }
