@@ -97,11 +97,20 @@ export async function POST(req: Request) {
       ))
     }
     
-    // Get a valid author ID for the blog post
+    // Get the author ID from the session - this should be the logged-in user
     let authorId = session?.user?.id
     
-    // In development mode, find or create a user to use as author
+    // Log the session information for debugging
+    console.log("Session info:", { 
+      hasSession: !!session, 
+      userId: session?.user?.id,
+      userName: session?.user?.name,
+      userEmail: session?.user?.email
+    })
+    
+    // Only use fallbacks if absolutely necessary (development mode without session)
     if (!authorId && isDevelopment) {
+      console.log("Using development fallback for author ID")
       // Try to find an admin user
       const adminUser = await db.user.findFirst({
         where: { role: "ADMIN" }
@@ -109,6 +118,7 @@ export async function POST(req: Request) {
       
       if (adminUser) {
         authorId = adminUser.id
+        console.log("Using admin user as fallback:", adminUser.name)
       } else {
         // If no admin user exists, create one
         const newAdmin = await db.user.create({
@@ -120,24 +130,7 @@ export async function POST(req: Request) {
           }
         })
         authorId = newAdmin.id
-      }
-    }
-    
-    // For production environment, ensure there's a valid author
-    if (!authorId && process.env.NODE_ENV === "production") {
-      // Try to find any admin user in the database
-      const anyAdmin = await db.user.findFirst({
-        where: { role: "ADMIN" }
-      })
-      
-      if (anyAdmin) {
-        authorId = anyAdmin.id
-      } else {
-        // If no admin exists at all, use the first user we can find
-        const anyUser = await db.user.findFirst({})
-        if (anyUser) {
-          authorId = anyUser.id
-        }
+        console.log("Created new admin user as fallback")
       }
     }
     
