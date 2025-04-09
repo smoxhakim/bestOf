@@ -89,9 +89,10 @@ export async function POST(req: Request) {
       )
     }
     
-    // In development mode, first find or create a user to use as author
+    // Get a valid author ID for the blog post
     let authorId = session?.user?.id
     
+    // In development mode, find or create a user to use as author
     if (!authorId && isDevelopment) {
       // Try to find an admin user
       const adminUser = await db.user.findFirst({
@@ -114,9 +115,27 @@ export async function POST(req: Request) {
       }
     }
     
+    // For production environment, ensure there's a valid author
+    if (!authorId && process.env.NODE_ENV === "production") {
+      // Try to find any admin user in the database
+      const anyAdmin = await db.user.findFirst({
+        where: { role: "ADMIN" }
+      })
+      
+      if (anyAdmin) {
+        authorId = anyAdmin.id
+      } else {
+        // If no admin exists at all, use the first user we can find
+        const anyUser = await db.user.findFirst({})
+        if (anyUser) {
+          authorId = anyUser.id
+        }
+      }
+    }
+    
     if (!authorId) {
       return NextResponse.json(
-        { error: "No valid author found" },
+        { error: "No valid author found. Please ensure you are logged in as an admin user." },
         { status: 500 }
       )
     }
