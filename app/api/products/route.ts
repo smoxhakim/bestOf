@@ -49,6 +49,22 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { name, description, price, imageUrl, categoryId, specs, features } = body
 
+    // Handle specs properly - it can now be either an object or a string
+    let parsedSpecs = null;
+    if (specs) {
+      // If specs is already an object, use it directly
+      if (typeof specs === 'object' && !Array.isArray(specs)) {
+        parsedSpecs = specs;
+      } else if (typeof specs === 'string') {
+        // For backward compatibility, try to parse if it's a string
+        try {
+          parsedSpecs = JSON.parse(specs);
+        } catch (e) {
+          console.error('Error parsing specs string:', e);
+        }
+      }
+    }
+
     const product = await prisma.product.create({
       data: {
         name,
@@ -56,7 +72,7 @@ export async function POST(request: Request) {
         price: Number(price),
         imageUrl,
         categoryId,
-        specs: specs ? JSON.parse(specs) : null,
+        specs: parsedSpecs,
         features: features || [],
       },
     })

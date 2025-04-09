@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Button } from "@/components/ui/button"
 import { BackgroundLines } from "@/components/ui/background-lines"
+import { SliderBanner } from "@/components/ui/slider-banner"
 import { Monitor, Code, ShoppingCart, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
@@ -63,6 +64,9 @@ export default function Home() {
           </div>
         </BackgroundLines>
       </section>
+
+      {/* Slider Banner */}
+      <SliderBanner />
 
       {/* Features Section */}
       <section ref={ref} className="py-16 bg-muted">

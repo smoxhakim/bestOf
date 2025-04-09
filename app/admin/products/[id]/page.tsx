@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
+import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { motion } from "framer-motion"
@@ -11,12 +11,18 @@ import { Textarea } from "@/components/ui/textarea"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { useToast } from "@/hooks/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { PlusCircle, X } from "lucide-react"
 
 // Define the Category interface
 interface Category {
   id: string;
   name: string;
 }
+
+const specItemSchema = z.object({
+  key: z.string().min(1, "Key is required"),
+  value: z.string().min(1, "Value is required")
+})
 
 const productSchema = z.object({
   name: z.string().min(1, "Product name is required"),
@@ -27,8 +33,9 @@ const productSchema = z.object({
     .regex(/^\d+(\.\d{1,2})?$/, "Invalid price format"),
   imageUrl: z.string().url("Invalid URL").optional().or(z.literal("")),
   categoryId: z.string().min(1, "Category is required"),
-  specs: z.string().optional(),
+  specItems: z.array(specItemSchema).optional().default([]),
   features: z.string().optional(),
+  rating: z.string().regex(/^\d+(\.\d{1,2})?$/, "Rating must be a number between 0 and 5").optional(),
 })
 
 export default function EditProduct({ params }: { params: { id: string } }) {
@@ -57,9 +64,15 @@ export default function EditProduct({ params }: { params: { id: string } }) {
       price: "",
       imageUrl: "",
       categoryId: "",
-      specs: "",
+      specItems: [{ key: "", value: "" }],
       features: "",
+      rating: "4.5",
     },
+  })
+  
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "specItems"
   })
 
   useEffect(() => {
@@ -71,12 +84,18 @@ export default function EditProduct({ params }: { params: { id: string } }) {
         }
         const data = await response.json()
         console.log("Fetched product data:", data) // Add this line for debugging
+        // Convert specs object to specItems array
+        const specItems = data.specs 
+          ? Object.entries(data.specs).map(([key, value]) => ({ key, value: String(value) }))
+          : [{ key: "", value: "" }];
+        
         form.reset({
           ...data,
           price: data.price.toString(),
-          specs: data.specs ? JSON.stringify(data.specs, null, 2) : "",
+          specItems,
           features: Array.isArray(data.features) ? data.features.join(", ") : "",
           categoryId: data.categoryId || "", // Ensure categoryId is set
+          rating: data.rating ? data.rating.toString() : "4.5",
         })
       } catch (error) {
         console.error("Error fetching product:", error)
@@ -95,16 +114,13 @@ export default function EditProduct({ params }: { params: { id: string } }) {
     try {
       console.log("Submitting data:", data) // Add this for debugging
 
-      // Parse specs, ensuring it's a valid JSON object
-      let parsedSpecs = null
-      if (data.specs) {
-        try {
-          parsedSpecs = JSON.parse(data.specs)
-        } catch (error) {
-          console.error("Error parsing specs:", error)
-          throw new Error("Invalid JSON format for specifications")
+      // Convert specItems array to specs object
+      const specs = data.specItems.reduce((acc, item) => {
+        if (item.key && item.value) {
+          acc[item.key] = item.value;
         }
-      }
+        return acc;
+      }, {} as Record<string, string>);
 
       const response = await fetch(`/api/products/${id}`, {
         method: "PUT",
@@ -112,7 +128,7 @@ export default function EditProduct({ params }: { params: { id: string } }) {
         body: JSON.stringify({
           ...data,
           price: Number.parseFloat(data.price),
-          specs: parsedSpecs, // Use the parsed specs here
+          specs, // Use the converted specs object
           features: data.features ? data.features.split(",").map((f) => f.trim()) : [],
         }),
       })
@@ -224,19 +240,65 @@ export default function EditProduct({ params }: { params: { id: string } }) {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="specs"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Specifications (JSON format)</FormLabel>
-                <FormControl>
-                  <Textarea placeholder='{"key": "value"}' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <FormLabel className="text-base">Specifications</FormLabel>
+              <Button 
+                type="button" 
+                variant="outline" 
+                size="sm" 
+                onClick={() => append({ key: "", value: "" })}
+                className="h-8 px-2 lg:px-3"
+              >
+                <PlusCircle className="h-3.5 w-3.5 mr-1" />
+                Add Spec
+              </Button>
+            </div>
+            
+            {fields.map((field, index) => (
+              <div key={field.id} className="flex items-start space-x-3 bg-muted/40 p-3 rounded-md relative">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-2 top-2 h-6 w-6 p-0 text-muted-foreground"
+                  onClick={() => fields.length > 1 && remove(index)}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+                
+                <div className="grid grid-cols-2 gap-3 w-full">
+                  <FormField
+                    control={form.control}
+                    name={`specItems.${index}.key`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs">Key</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., CPU, RAM, Storage" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name={`specItems.${index}.value`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs">Value</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., Intel i7, 16GB, 1TB SSD" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
           <FormField
             control={form.control}
             name="features"
@@ -245,6 +307,26 @@ export default function EditProduct({ params }: { params: { id: string } }) {
                 <FormLabel>Features (comma-separated)</FormLabel>
                 <FormControl>
                   <Input placeholder="Feature 1, Feature 2, Feature 3" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="rating"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Rating (0-5)</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="number" 
+                    min="0" 
+                    max="5" 
+                    step="0.1" 
+                    {...field} 
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

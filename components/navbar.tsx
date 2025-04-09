@@ -42,6 +42,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
     { href: "/services", label: "Services", icon: Code },
     { href: "/about", label: "À Propos", icon: Monitor },
     { href: "/contact", label: "Contact" },
+    { href: "/blog", label: "Blog" },
   ]
 
   if (isLoading) {

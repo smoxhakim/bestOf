@@ -25,7 +25,6 @@ type Product = {
   price: number
   description: string
   imageUrl: string
-  stock?: number
   rating?: number
   features?: string[]
 }
@@ -276,14 +275,7 @@ export default function ProductsPage() {
                         
                         <p className="text-muted-foreground mb-4 line-clamp-2">{product.description}</p>
                         
-                        {/* Stock indicator */}
-                        {product.stock !== undefined && (
-                          <div className="mb-3">
-                            <Badge variant={product.stock > 5 ? "outline" : "destructive"} className="text-xs">
-                              {product.stock > 5 ? `En stock (${product.stock})` : product.stock > 0 ? `Stock limité (${product.stock})` : "Rupture de stock"}
-                            </Badge>
-                          </div>
-                        )}
+
                         
                         <div className="mt-auto pt-3">
                           <Button asChild className="w-full">
