@@ -41,16 +41,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error('Article non trouvé')
+            throw new Error("Article non trouvé")
           }
-          throw new Error('Erreur lors du chargement de l\'article')
+          throw new Error("Erreur lors du chargement de l'article")
         }
         
         const data = await response.json()
         setPost(data)
       } catch (error) {
         console.error('Error fetching blog post:', error)
-        setError(error instanceof Error ? error.message : 'Une erreur est survenue')
+        setError(error instanceof Error ? error.message : "Une erreur est survenue")
       } finally {
         setLoading(false)
       }
@@ -144,7 +144,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="flex items-center text-muted-foreground mb-8 text-sm gap-4">
             <div className="flex items-center">
               <User className="mr-2 h-4 w-4" />
-              <span>{post.author.name || 'Admin'}</span>
+              <span>{post.author.name || "Admin"}</span>
             </div>
             <div className="flex items-center">
               <CalendarIcon className="mr-2 h-4 w-4" />

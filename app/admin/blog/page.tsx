@@ -264,7 +264,7 @@ export default function BlogAdminPage() {
                             <AlertDialogHeader>
                               <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                               <AlertDialogDescription>
-                                This will permanently delete the blog post "{post.title}".
+                                This will permanently delete the blog post &ldquo;{post.title}&rdquo;.
                                 This action cannot be undone.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
