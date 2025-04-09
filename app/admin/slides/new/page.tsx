@@ -20,9 +20,23 @@ const slideSchema = z.object({
   imageUrl: z.string().url("Invalid URL"),
   buttonText: z.string().optional(),
   buttonLink: z.string().url("Invalid URL").optional().or(z.literal("")),
-  order: z.string().regex(/^\d+$/, "Order must be a positive integer").transform(val => parseInt(val)),
+  order: z.string().regex(/^\d+$/, "Order must be a positive integer"),
   active: z.boolean().default(true),
 })
+
+// Define the type for the form values
+type SlideFormValues = z.infer<typeof slideSchema>
+
+// Define the type for the API submission
+interface SlideSubmission {
+  title: string
+  description: string
+  imageUrl: string
+  buttonText?: string
+  buttonLink?: string
+  order: number
+  active: boolean
+}
 
 export default function NewSlidePage() {
   const router = useRouter()
@@ -42,7 +56,7 @@ export default function NewSlidePage() {
     },
   })
 
-  const onSubmit = async (data: z.infer<typeof slideSchema>) => {
+  const onSubmit = async (data: SlideFormValues) => {
     setIsSubmitting(true)
     try {
       // Ensure order is sent as a number
