@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -209,7 +209,9 @@ export default function ProductsPage() {
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
                 {products.map((product) => {
-                  const Icon = iconMap[product.category.name as keyof typeof iconMap] || Monitor;
+                  // Use a simple approach for the icon
+                  const categoryName = product.category.name as keyof typeof iconMap;
+                  const IconComponent = iconMap[categoryName] || Monitor;
                   return (
                     <motion.div
                       key={product.id}
@@ -242,7 +244,15 @@ export default function ProductsPage() {
                         ) : (
                           <div className="flex items-center justify-center h-full">
                             <div className="p-4 bg-primary/10 rounded-full">
-                              <Icon className="h-12 w-12 text-primary" />
+                              <div className="h-12 w-12 text-primary">
+                                {categoryName === "Computers" && <Monitor className="h-full w-full" />}
+                                {categoryName === "Laptops" && <Laptop className="h-full w-full" />}
+                                {categoryName === "Accessories" && <Mouse className="h-full w-full" />}
+                                {categoryName === "Storage" && <HardDrive className="h-full w-full" />}
+                                {categoryName === "Components" && <Cpu className="h-full w-full" />}
+                                {categoryName === "Networking" && <Router className="h-full w-full" />}
+                                {!iconMap[categoryName] && <Monitor className="h-full w-full" />}
+                              </div>
                             </div>
                           </div>
                         )}
