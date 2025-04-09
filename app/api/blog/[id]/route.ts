@@ -3,6 +3,14 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 
+// Helper function to add CORS headers
+function corsHeaders(response: NextResponse) {
+  response.headers.set('Access-Control-Allow-Origin', '*')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  return response
+}
+
 // GET a specific blog post by ID
 export async function GET(
   req: Request,
@@ -29,13 +37,13 @@ export async function GET(
       )
     }
 
-    return NextResponse.json(post)
+    return corsHeaders(NextResponse.json(post))
   } catch (error) {
     console.error("Error fetching blog post:", error)
-    return NextResponse.json(
+    return corsHeaders(NextResponse.json(
       { error: "Failed to fetch blog post" },
       { status: 500 }
-    )
+    ))
   }
 }
 
@@ -105,13 +113,13 @@ export async function PUT(
       },
     })
     
-    return NextResponse.json(updatedPost)
+    return corsHeaders(NextResponse.json(updatedPost))
   } catch (error) {
     console.error("Error updating blog post:", error)
-    return NextResponse.json(
+    return corsHeaders(NextResponse.json(
       { error: "Failed to update blog post" },
       { status: 500 }
-    )
+    ))
   }
 }
 
@@ -148,12 +156,12 @@ export async function DELETE(
       where: { id: params.id },
     })
     
-    return NextResponse.json({ success: true })
+    return corsHeaders(NextResponse.json({ success: true }))
   } catch (error) {
     console.error("Error deleting blog post:", error)
-    return NextResponse.json(
+    return corsHeaders(NextResponse.json(
       { error: "Failed to delete blog post" },
       { status: 500 }
-    )
+    ))
   }
 }

@@ -3,6 +3,14 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 
+// Helper function to add CORS headers
+function corsHeaders(response: NextResponse) {
+  response.headers.set('Access-Control-Allow-Origin', '*')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  return response
+}
+
 // GET all blog posts (with optional filtering)
 export async function GET(req: Request) {
   try {
@@ -33,13 +41,13 @@ export async function GET(req: Request) {
       },
     })
     
-    return NextResponse.json(posts)
+    return corsHeaders(NextResponse.json(posts))
   } catch (error) {
     console.error("Error fetching blog posts:", error)
-    return NextResponse.json(
+    return corsHeaders(NextResponse.json(
       { error: "Failed to fetch blog posts" },
       { status: 500 }
-    )
+    ))
   }
 }
 
@@ -53,20 +61,20 @@ export async function POST(req: Request) {
     
     // Check if user is authenticated and has admin role (skip in development)
     if (!isDevelopment && (!session || session.user.role !== "ADMIN")) {
-      return NextResponse.json(
+      return corsHeaders(NextResponse.json(
         { error: "Unauthorized" },
         { status: 401 }
-      )
+      ))
     }
     
     const body = await req.json()
     
     // Validate required fields
     if (!body.title || !body.content) {
-      return NextResponse.json(
+      return corsHeaders(NextResponse.json(
         { error: "Title and content are required" },
         { status: 400 }
-      )
+      ))
     }
     
     // Generate slug from title if not provided
@@ -83,10 +91,10 @@ export async function POST(req: Request) {
     })
     
     if (existingPost) {
-      return NextResponse.json(
+      return corsHeaders(NextResponse.json(
         { error: "A post with this slug already exists" },
         { status: 400 }
-      )
+      ))
     }
     
     // Get a valid author ID for the blog post
@@ -134,10 +142,10 @@ export async function POST(req: Request) {
     }
     
     if (!authorId) {
-      return NextResponse.json(
+      return corsHeaders(NextResponse.json(
         { error: "No valid author found. Please ensure you are logged in as an admin user." },
         { status: 500 }
-      )
+      ))
     }
     
     // Create new blog post
@@ -154,12 +162,12 @@ export async function POST(req: Request) {
       },
     })
     
-    return NextResponse.json(post)
+    return corsHeaders(NextResponse.json(post))
   } catch (error) {
     console.error("Error creating blog post:", error)
-    return NextResponse.json(
+    return corsHeaders(NextResponse.json(
       { error: "Failed to create blog post" },
       { status: 500 }
-    )
+    ))
   }
 }
