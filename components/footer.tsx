@@ -151,7 +151,7 @@ export default function Footer() {
                 <Link href="#" className="text-primary-foreground/90 dark:text-gray-300 hover:text-white transition-colors duration-300">
                   <Instagram className="h-5 w-5" />
                 </Link>
-                <Link href="https://www.linkedin.com/in/bestof-tech-sarl-90b2511a4/" className="text-primary-foreground/90 hover:text-white transition-colors duration-300">
+                <Link href="https://www.linkedin.com/in/bestof-tech-sarl-90b2511a4/" className="text-primary-foreground/90 dark:text-gray-300 hover:text-white dark:hover:text-white transition-colors duration-300">
                   <Linkedin className="h-5 w-5" />
                 </Link>
               </div>
