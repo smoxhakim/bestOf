@@ -33,7 +33,10 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 dark:from-foreground dark:to-foreground/70">BESTOF – La tech au service de votre savoir</h1>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 dark:from-foreground dark:to-foreground/70">BESTOF</h1>
+
+              <h3 className="text-3xl sm:text-4xl md:text-6xl font-normal tracking-tight mb-4 sm:mb-6 bg-clip-text text-gray-600 dark:text-gray-400 bg-gradient-to-b from-foreground/70 to-foreground/90 dark:from-foreground dark:to-foreground/70">La tech au service de votre savoir</h3>
+              
               <p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto">Découvrez notre gamme complète de produits et services informatiques pour propulser votre entreprise vers le succès.</p>
               <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto">
                 <Button 
